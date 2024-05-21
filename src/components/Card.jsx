@@ -7,7 +7,7 @@ export default function SingleCard({ id, titulo, fecha, experiencia, comentario,
     const { dataHistòria, setDataHistòria } = useGlobalContext()
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    function controladorEditarHistòria(e) {
+    function controladorEditarHistòria() {
         const historia = {
             "id": id,
             "titulo": titulo,
@@ -16,6 +16,13 @@ export default function SingleCard({ id, titulo, fecha, experiencia, comentario,
             "comentario": comentario,
             "imagen": imagen    
         }
+
+        setDataHistòria(historia)
+        onOpen()
+    }
+
+    function controladorBorrarHistòria(id) {
+        console.log("ID de la historia a borrar:", id);
     }
 
     return (
@@ -36,10 +43,10 @@ export default function SingleCard({ id, titulo, fecha, experiencia, comentario,
                     <p className="text-black text-tiny">{experiencia}</p>
                 </div>
                 <div className="space-x-2 ">
-                    <Button color="warning" variant="ghost" radius="lg" size="sm" onPress={onOpen} onClick={(e) => controladorEditarHistòria(e)}>
+                    <Button color="warning" variant="ghost" radius="lg" size="sm" onClick={controladorEditarHistòria}>
                         <Pencil />
                     </Button>
-                    <Button color="danger" variant="ghost" radius="lg" size="sm" onPress={onOpen} onClick={(e) => controladorEditarHistòria(e)}>
+                    <Button color="danger" variant="ghost" radius="lg" size="sm" onClick={() => controladorBorrarHistòria(id)}>
                         <Trash2 />
                     </Button>
                 </div>

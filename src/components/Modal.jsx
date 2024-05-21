@@ -5,6 +5,9 @@ import { useGlobalContext } from '../context/GlobalContext';
 export default function FormModal(){
     const { dataHistòria, setDataHistòria } = useGlobalContext()
 
+    function controladorFormHistòria() {
+        
+    }
 
     return (
         <ModalContent>
@@ -18,6 +21,7 @@ export default function FormModal(){
                             placeholder="Selecciona una fecha"
                             endContent={<Calendar className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
                             value={dataHistòria ? dataHistòria.fecha : ''}
+                            onChange={(e) =>}
                         />
                         <Input
                             className='mb-3'
