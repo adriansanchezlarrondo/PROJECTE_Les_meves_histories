@@ -1,10 +1,26 @@
-import { Button, Card, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import { Button, Card, CardFooter, CardHeader, Image, Modal, useDisclosure } from "@nextui-org/react";
 import { Pencil, Trash2 } from "lucide-react";
+import FormModal from "./Modal";
+import { useGlobalContext } from "../context/GlobalContext";
 
-export default function SingleCard({ id, titulo, fecha, experiencia, imagen }) {
+export default function SingleCard({ id, titulo, fecha, experiencia, comentario, imagen }) {
+    const { dataHistòria, setDataHistòria } = useGlobalContext()
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+    function controladorEditarHistòria(e) {
+        const historia = {
+            "id": id,
+            "titulo": titulo,
+            "fecha": fecha,
+            "experiencia": experiencia,
+            "comentario": comentario,
+            "imagen": imagen    
+        }
+    }
 
     return (
-        <Card id={id} isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
+    <>
+        <Card id={id} isFooterBlurred className="w-full h-[300px] col-span-12 md:col-span-6">
             <CardHeader className="absolute z-10 top-1 flex-col items-start">
                 <p className="text-tiny text-white/60 uppercase font-bold">Viaje a {titulo}</p>
                 <h4 className="text-black font-medium text-2xl">{fecha}</h4>
@@ -19,15 +35,25 @@ export default function SingleCard({ id, titulo, fecha, experiencia, imagen }) {
                 <div className="w-2/3">
                     <p className="text-black text-tiny">{experiencia}</p>
                 </div>
-                <div className="space-x-2">
-                    <Button color="warning" className="w-[24px]" variant="ghost" radius="lg" size="sm">
+                <div className="space-x-2 ">
+                    <Button color="warning" variant="ghost" radius="lg" size="sm" onPress={onOpen} onClick={(e) => controladorEditarHistòria(e)}>
                         <Pencil />
                     </Button>
-                    <Button color="danger" className="w-[24px]" variant="ghost" radius="lg" size="sm">
+                    <Button color="danger" variant="ghost" radius="lg" size="sm" onPress={onOpen} onClick={(e) => controladorEditarHistòria(e)}>
                         <Trash2 />
                     </Button>
                 </div>
             </CardFooter>
         </Card>
+
+        <Modal
+            isOpen={isOpen} 
+            onOpenChange={onOpenChange}
+            placement="top-center"
+        >
+            <FormModal />
+        </Modal>
+    </>
+
     )
 }
