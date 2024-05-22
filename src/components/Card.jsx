@@ -14,7 +14,7 @@ export default function SingleCard({ id, titulo, fecha, experiencia, comentario,
             "fecha": fecha,
             "experiencia": experiencia,
             "comentario": comentario,
-            "imagen": imagen    
+            "imagen": imagen
         }
 
         setDataHistòria(historia)

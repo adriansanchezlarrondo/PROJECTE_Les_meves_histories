@@ -23,7 +23,7 @@ export default function FormModal(){
         <ModalContent>
             {(onClose) => (
                 <>
-                    <ModalHeader className="flex flex-col gap-1">Editar Historia &quot;{dataHistòria ? dataHistòria.titulo : ''}&quot;</ModalHeader>
+                    <ModalHeader className="flex flex-col gap-1">{dataHistòria ? `Editar Historia "${dataHistòria.titulo}"` : 'Nueva historia ejemplo'}</ModalHeader>
                     <ModalBody>
                         <Input
                             className='mb-3'
@@ -75,8 +75,8 @@ export default function FormModal(){
                         <Button color="danger" variant="flat" onPress={onClose}>
                             Cerrar
                         </Button>
-                        <Button color="success" onPress={() => {controladorActualizaHistòrias(); onClose();}}>
-                            Actualizar
+                        <Button color={dataHistòria ? "success" : 'primary'} onPress={() => {controladorActualizaHistòrias(); onClose();}}>
+                            {dataHistòria ? 'Actualizar' : 'Crear historia'}
                         </Button>
                     </ModalFooter>
                 </>
