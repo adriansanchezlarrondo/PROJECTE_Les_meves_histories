@@ -13,6 +13,12 @@ export default function FormModal(){
         }));
     }
 
+    function controladorActualizaHistòrias() {
+        console.log(`ID: ${dataHistòria.id}`);
+        console.log('Información de la historia:', dataHistòria);
+    }
+
+
     return (
         <ModalContent>
             {(onClose) => (
@@ -67,10 +73,10 @@ export default function FormModal(){
                     </ModalBody>
                     <ModalFooter>
                         <Button color="danger" variant="flat" onPress={onClose}>
-                            Close
+                            Cerrar
                         </Button>
-                        <Button color="success" onPress={onClose}>
-                            Añadir
+                        <Button color="success" onPress={() => {controladorActualizaHistòrias(); onClose();}}>
+                            Actualizar
                         </Button>
                     </ModalFooter>
                 </>
