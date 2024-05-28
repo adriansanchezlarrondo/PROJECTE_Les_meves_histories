@@ -4,10 +4,10 @@ import FormModal from "./Modal";
 import { useGlobalContext } from "../context/GlobalContext";
 
 export default function SingleCard({ id, titulo, fecha, experiencia, comentario, imagen }) {
-    const { dataHistòria, setDataHistòria } = useGlobalContext()
+    const { dataHistoria, setDataHistoria } = useGlobalContext()
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    function controladorEditarHistòria() {
+    function controladorEditarHistoria() {
         const historia = {
             "id": id,
             "titulo": titulo,
@@ -17,11 +17,11 @@ export default function SingleCard({ id, titulo, fecha, experiencia, comentario,
             "imagen": imagen
         }
 
-        setDataHistòria(historia)
+        setDataHistoria(historia)
         onOpen()
     }
 
-    function controladorBorrarHistòria(id) {
+    function controladorBorrarHistoria(id) {
         console.log("ID de la historia a borrar:", id);
     }
 
@@ -43,10 +43,10 @@ export default function SingleCard({ id, titulo, fecha, experiencia, comentario,
                     <p className="text-black text-tiny">{experiencia}</p>
                 </div>
                 <div className="space-x-2 ">
-                    <Button color="warning" variant="ghost" radius="lg" size="sm" onClick={controladorEditarHistòria}>
+                    <Button color="warning" variant="ghost" radius="lg" size="sm" onClick={controladorEditarHistoria}>
                         <Pencil />
                     </Button>
-                    <Button color="danger" variant="ghost" radius="lg" size="sm" onClick={() => controladorBorrarHistòria(id)}>
+                    <Button color="danger" variant="ghost" radius="lg" size="sm" onClick={() => controladorBorrarHistoria(id)}>
                         <Trash2 />
                     </Button>
                 </div>

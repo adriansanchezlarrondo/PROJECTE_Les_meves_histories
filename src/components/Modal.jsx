@@ -3,19 +3,19 @@ import { Calendar, Image, Pencil } from 'lucide-react';
 import { useGlobalContext } from '../context/GlobalContext';
 
 export default function FormModal(){
-    const { dataHistòria, setDataHistòria } = useGlobalContext()
+    const { dataHistoria, setDataHistoria } = useGlobalContext()
 
-    function controladorFormHistòria(e) {
+    function controladorFormHistoria(e) {
         const { name, value } = e.target;
-        setDataHistòria(prevState => ({
+        setDataHistoria(prevState => ({
             ...prevState,
             [name]: value,
         }));
     }
 
-    function controladorActualizaHistòrias() {
-        console.log(`ID: ${dataHistòria.id}`);
-        console.log('Información de la historia:', dataHistòria);
+    function controladorActualizaHistorias() {
+        console.log(`ID: ${dataHistoria.id}`);
+        console.log('Información de la historia:', dataHistoria);
     }
 
 
@@ -23,7 +23,7 @@ export default function FormModal(){
         <ModalContent>
             {(onClose) => (
                 <>
-                    <ModalHeader className="flex flex-col gap-1">{dataHistòria ? `Editar Historia "${dataHistòria.titulo}"` : 'Nueva historia ejemplo'}</ModalHeader>
+                    <ModalHeader className="flex flex-col gap-1">{dataHistoria ? `Editar Historia "${dataHistoria.titulo}"` : 'Nueva historia ejemplo'}</ModalHeader>
                     <ModalBody>
                         <Input
                             className='mb-3'
@@ -31,8 +31,8 @@ export default function FormModal(){
                             placeholder="Selecciona una fecha"
                             endContent={<Calendar className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
                             name="fecha"
-                            value={dataHistòria ? dataHistòria.fecha : ''}
-                            onChange={controladorFormHistòria}
+                            value={dataHistoria ? dataHistoria.fecha : ''}
+                            onChange={controladorFormHistoria}
                         />
                         <Input
                             className='mb-3'
@@ -40,8 +40,8 @@ export default function FormModal(){
                             placeholder="Introduce el título"
                             endContent={<Pencil className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
                             name="titulo"
-                            value={dataHistòria ? dataHistòria.titulo : ''}
-                            onChange={controladorFormHistòria}
+                            value={dataHistoria ? dataHistoria.titulo : ''}
+                            onChange={controladorFormHistoria}
                         />
                         <Textarea
                             className='mb-3'
@@ -49,8 +49,8 @@ export default function FormModal(){
                             placeholder="Introduce la experiencia"
                             minRows={5}
                             name="experiencia"
-                            value={dataHistòria ? dataHistòria.experiencia : ''}
-                            onChange={controladorFormHistòria}
+                            value={dataHistoria ? dataHistoria.experiencia : ''}
+                            onChange={controladorFormHistoria}
                         />
                         <Textarea
                             className='mb-3'
@@ -58,8 +58,8 @@ export default function FormModal(){
                             placeholder="Introduce un comentario"
                             minRows={5}
                             name="comentario"
-                            value={dataHistòria ? dataHistòria.comentario : ''}
-                            onChange={controladorFormHistòria}
+                            value={dataHistoria ? dataHistoria.comentario : ''}
+                            onChange={controladorFormHistoria}
                         />
                         <Input
                             className='mb-3'
@@ -67,16 +67,16 @@ export default function FormModal(){
                             placeholder="URL imagen"
                             endContent={<Image className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />}
                             name="imagen"
-                            value={dataHistòria ? dataHistòria.imagen : ''}
-                            onChange={controladorFormHistòria}
+                            value={dataHistoria ? dataHistoria.imagen : ''}
+                            onChange={controladorFormHistoria}
                         />
                     </ModalBody>
                     <ModalFooter>
                         <Button color="danger" variant="flat" onPress={onClose}>
                             Cerrar
                         </Button>
-                        <Button color={dataHistòria ? "success" : 'primary'} onPress={() => {controladorActualizaHistòrias(); onClose();}}>
-                            {dataHistòria ? 'Actualizar' : 'Crear historia'}
+                        <Button color={dataHistoria ? "success" : 'primary'} onPress={() => {controladorActualizaHistorias(); onClose();}}>
+                            {dataHistoria ? 'Actualizar' : 'Crear historia'}
                         </Button>
                     </ModalFooter>
                 </>
