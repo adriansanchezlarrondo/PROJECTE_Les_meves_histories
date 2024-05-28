@@ -6,14 +6,13 @@ export default function Cards() {
     const { historias } = useGlobalContext()
 
     useEffect(() => {
-        const cargarDatos = async () => {
-            const response = await fetch('https://json-server-rouge-three.vercel.app/historias', {
-                method: 'GET'});
+        const getHistorias = async () => {
+            const response = await fetch('https://json-server-liart-iota.vercel.app/historias', {method: 'GET'});
             const data = await response.json();
-            console.log('get', data);
+            console.log('historias', data);
         };
 
-        cargarDatos()
+        getHistorias()
     }, []);
 
 
