@@ -9,7 +9,7 @@ export default function App() {
   const { setDataHistoria } = useGlobalContext()
 
   function controladorNuevaHistoria() {
-    setDataHistoria(0)
+    setDataHistoria({})
     onOpen()
   }
 

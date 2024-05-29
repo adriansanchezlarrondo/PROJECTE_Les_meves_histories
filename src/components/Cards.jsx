@@ -3,9 +3,25 @@ import { useGlobalContext } from '../context/GlobalContext.jsx'
 import SingleCard from './Card.jsx'
 
 export default function Cards() {
-    const { historias, getHistorias } = useGlobalContext()
+    const { historias, setHistorias } = useGlobalContext()
 
     useEffect(() => {
+        const getHistorias = async () => {
+            try {
+                const response = await fetch('https://json-server-liart-iota.vercel.app/historias', { method: 'GET' });
+                const data = await response.json();
+
+                if (Array.isArray(data)) {
+                    console.log('historias', data);
+                    setHistorias(data);
+                } else {
+                    console.error('Data is not an array:', data)
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error)
+            }
+        }
+
         getHistorias()
     }, []);
 
