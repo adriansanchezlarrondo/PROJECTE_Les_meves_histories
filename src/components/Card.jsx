@@ -4,7 +4,7 @@ import FormModal from "./Modal";
 import { useGlobalContext } from "../context/GlobalContext";
 
 export default function SingleCard({ id, titulo, fecha, experiencia, comentario, imagen }) {
-    const { dataHistoria, setDataHistoria, historias, setHistorias } = useGlobalContext()
+    const { setDataHistoria, historias, setHistorias } = useGlobalContext()
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     function controladorEditarHistoria() {

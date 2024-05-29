@@ -11,7 +11,6 @@ export default function Cards() {
                 const response = await fetch('https://json-server-liart-iota.vercel.app/historias', { method: 'GET' });
                 const data = await response.json();
 
-                console.log('historias tipo:', typeof(data));
                 if (Array.isArray(data)) {
                     console.log('historias', data);
                     setHistorias(data);
