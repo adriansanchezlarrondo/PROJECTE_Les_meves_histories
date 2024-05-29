@@ -4,7 +4,7 @@ import FormModal from "./Modal";
 import { useGlobalContext } from "../context/GlobalContext";
 
 export default function SingleCard({ id, titulo, fecha, experiencia, comentario, imagen }) {
-    const { dataHistoria, setDataHistoria } = useGlobalContext()
+    const { dataHistoria, setDataHistoria, historias, setHistorias } = useGlobalContext()
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     function controladorEditarHistoria() {
@@ -21,8 +21,20 @@ export default function SingleCard({ id, titulo, fecha, experiencia, comentario,
         onOpen()
     }
 
-    function controladorBorrarHistoria(id) {
+    async function controladorBorrarHistoria(id) {
         console.log("ID de la historia a borrar:", id);
+
+        try {
+            const response = await fetch(`https://json-server-liart-iota.vercel.app/historias/${id}`, { method: 'DELETE' });
+            
+            if (response.ok) {
+                setHistorias(historias.filter(historia => historia.id !== id));
+            } else {
+                console.error('Error al borrar la historia');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
 
     return (
